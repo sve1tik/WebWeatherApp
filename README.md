@@ -1,4 +1,4 @@
-# [WebWeatherApp](https://sve1tik.github.io/WebAppWeather/)
+# [WebWeatherApp](https://sve1tik.github.io/WebWeatherApp/)
  A simple web application for viewing the weather created using the OpenWeather API.
 
 ## Features:
