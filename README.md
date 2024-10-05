@@ -9,8 +9,8 @@
 
 - **Vue 3**: A framework for creating dynamic interfaces.
 - **Vite**: A quick tool for building a project.
-- OpenWeather API: A source of weather data.
-- Axios: For making requests to servers.
-- Botstrap: Out-of-the-box components for quickly creating beautiful designs
+- **OpenWeather API:** A source of weather data.
+- **Axios:** For making requests to servers.
+- **Botstrap:** Out-of-the-box components for quickly creating beautiful designs
 
   
