@@ -1,4 +1,4 @@
-@charset "UTF-8";#app{max-width:1280px;margin:0 auto;padding:2rem;font-weight:400}a,.green{text-decoration:none;color:#00bd7e;transition:.4s;padding:3px}@media (hover: hover){a:hover{background-color:#00bd7e33}}@media (min-width: 1024px){body{display:flex;place-items:center}#app{display:grid;grid-template-columns:1fr 1fr;padding:0 2rem}}form[data-v-5af2acbd]{width:100%}.weather[data-v-5af2acbd]{padding-top:100px}.content>img[data-v-5af2acbd]{width:100px}/*!
+@charset "UTF-8";#app{max-width:1280px;margin:0 auto;padding:2rem;font-weight:400}a,.green{text-decoration:none;color:#00bd7e;transition:.4s;padding:3px}@media (hover: hover){a:hover{background-color:#00bd7e33}}@media (min-width: 1024px){body{display:flex;place-items:center}#app{display:grid;grid-template-columns:1fr 1fr;padding:0 2rem}}form[data-v-9b7eb188]{width:100%}.weather[data-v-9b7eb188]{padding-top:100px}.content>img[data-v-9b7eb188]{width:100px}/*!
  * Bootstrap  v5.3.3 (https://getbootstrap.com/)
  * Copyright 2011-2024 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
