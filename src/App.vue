@@ -1,6 +1,6 @@
 <script setup>
-import { getWeather } from "./getWeather.js";
-import { ref } from 'vue';
+import { getWeather, getLocalGEO } from "./getWeather.js";
+import { onMounted, ref } from 'vue';
 import iziToast from 'iziToast';
 
 
@@ -13,6 +13,7 @@ iziToast.settings({
 	transitionOut: 'flipOutX',
 });
 
+
 let city = ref();
 let weatherData = ref({
 	currentTemp: null,
@@ -21,8 +22,21 @@ let weatherData = ref({
 	gust: null,
 	maxTemp: null,
 	minTemp: null,
-	windSpeed: null
+	windSpeed: null,
+	name: null
 });
+
+
+onMounted(() => {
+	navigator.geolocation.getCurrentPosition(position => {
+		const { latitude, longitude } = position.coords;
+		getLocalGEO(latitude, longitude).then(response => {
+			sendCity(response)
+		});
+	})
+}
+);
+
 function sendCity(city) {
 	if (!city) {
 		iziToast.error({
@@ -37,11 +51,11 @@ function sendCity(city) {
 		weatherData.value.desc = response.desc;
 		weatherData.value.gust = response.gust;
 		weatherData.value.maxTemp = response.max_temp;
-		weatherData.value.minTemp = response.min_temp
-		weatherData.value.windSpeed = response.wind_speed
+		weatherData.value.minTemp = response.min_temp;
+		weatherData.value.windSpeed = response.wind_speed;
+		weatherData.value.name = response.name;
 	});
 }
-
 </script>
 
 <template>
@@ -57,12 +71,12 @@ function sendCity(city) {
 				</form>
 			</div>
 		</section>
-		<section class="weather" v-if="weatherData.icon">
+		<section class="weather">
 			<div class="container">
 				<div class="content card justify-content-center">
 					<div class="content__wrapper card-body d-flex column-gap-5">
 						<div>
-							<p class="card-title">{{ city }}</p>
+							<p class="card-title">{{ city || weatherData.name }}</p>
 							<h2 class="card-title">Weather: </h2>
 							<img :src="`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`" alt="" class="card-img">
 							<p class="card-text">{{ weatherData.desc }}</p>

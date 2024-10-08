@@ -9,6 +9,16 @@ const $api = axios.create({
   timeout: '1000'
 })
 
+export async function getLocalGEO(lat, lon) {
+  let localCityName
+  await $api
+    .get(`data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${getENV('VITE_API_KEY')}`)
+    .then((response) => {
+      localCityName = response.data.name
+    })
+  return localCityName
+}
+
 export async function getWeather(city) {
   const weatherData = {
     lat: 0,
@@ -19,8 +29,10 @@ export async function getWeather(city) {
     max_temp: 0,
     min_temp: 0,
     wind_speed: 0,
-    gust: 0
+    gust: 0,
+    name: ''
   }
+
   await $api
     .get(`geo/1.0/direct?q=${city}&limit=1&appid=${getENV('VITE_API_KEY')}`)
     .then((response) => {
@@ -39,6 +51,7 @@ export async function getWeather(city) {
       weatherData.min_temp = response.data.main.temp_min
       weatherData.wind_speed = response.data.wind.speed
       weatherData.gust = response.data.wind.gust
+      weatherData.name = response.data.name
     })
   return {
     icon: weatherData.icon,
@@ -47,6 +60,7 @@ export async function getWeather(city) {
     min_temp: weatherData.min_temp,
     max_temp: weatherData.max_temp,
     wind_speed: weatherData.wind_speed,
-    gust: weatherData.gust
+    gust: weatherData.gust,
+    name: weatherData.name
   }
 }
