@@ -3,7 +3,6 @@ import { getWeather, getLocalGEO } from "./getWeather.js";
 import { onMounted, ref } from 'vue';
 import iziToast from 'iziToast';
 
-
 iziToast.settings({
 	timeout: 10000,
 	position: 'topRight',
@@ -23,17 +22,20 @@ let weatherData = ref({
 	maxTemp: null,
 	minTemp: null,
 	windSpeed: null,
-	name: null
+	name: null,
 });
+
 
 
 onMounted(() => {
 	navigator.geolocation.getCurrentPosition(position => {
 		const { latitude, longitude } = position.coords;
+
 		getLocalGEO(latitude, longitude).then(response => {
 			sendCity(response)
 		});
 	})
+
 }
 );
 
@@ -60,6 +62,7 @@ function sendCity(city) {
 
 <template>
 	<main>
+
 		<section>
 			<div class="container">
 				<form @submit.prevent="sendCity(city)" class="d-grid row-gap-3 pt-lg-3">
@@ -98,6 +101,10 @@ function sendCity(city) {
 </template>
 
 <style scoped>
+/* .mySwiper {
+	height: 300px !important;
+} */
+
 form {
 	width: 100%;
 }
@@ -107,7 +114,7 @@ form {
 }
 
 
-.content>img {
+img {
 	width: 100px;
 }
 </style>
