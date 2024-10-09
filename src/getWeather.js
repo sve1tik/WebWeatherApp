@@ -33,13 +33,14 @@ export async function getLocalGEO(lat, lon) {
   return LocalCityName
 }
 
-function getGEO(city) {
-  $api.get(`geo/1.0/direct?q=${city}&limit=1&appid=${getENV('VITE_API_KEY')}`).then((response) => {
-    weatherData.lat = response.data[0].lat
-    weatherData.lon = response.data[0].lon
-  })
+async function getGEO(city) {
+  await $api
+    .get(`geo/1.0/direct?q=${city}&limit=1&appid=${getENV('VITE_API_KEY')}`)
+    .then((response) => {
+      weatherData.lat = response.data[0].lat
+      weatherData.lon = response.data[0].lon
+    })
 }
-
 export async function getWeather(city) {
   await getGEO(city)
 
